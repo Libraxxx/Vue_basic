@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>初识Vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备一个容器 -->
+    <div id="root">
+        <!-- <h1>你好哇,{{name}}</h1> -->
+        <h1>{{person.name}}</h1>
+        <h1>{{person.age}}</h1>
+    </div>
+
+    <script type="text/javascript">
+        // 1.创建一个vue的实例对象，并传入配置对象
+        const v = new Vue({
+            el: '#root', //el指定当前Vue实例为哪个容器服务
+            data: { //data为存储数据的地方，为root容器提供数据，值为一个对象
+                person: {
+                    name: '刘德华',
+                    age: 18
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>
