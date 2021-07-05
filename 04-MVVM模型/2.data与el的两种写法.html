@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+</head>
+
+<!-- 
+  data与el的两种写法：
+    1.el的两种写法
+      （1）new Vue时候直接传递el属性 ---常用
+      （2）通过vm.$mount('#root')指定el属性---不常用
+    2.data的两种写法：
+      （1）对象式：非组件编码时，可以写对象，也可以写函数
+      （2）函数式：组件化编码必须使用函数式的data 
+
+ -->
+
+<body>
+    <div id="root">
+        <h2>Hello，{{msg}}</h2>
+        <h2>地址是，{{addr}}</h2>
+    </div>
+    <script>
+        // el的第一种写法：new Vue时候直接传递el属性 ---常用
+        // new Vue({
+        //     el: '#root',
+        //     data: {
+        //         msg: '你好哇',
+        //         addr: '你心里'
+        //     }
+        // })
+
+
+        // el的第二种写法：new Vue时候直接传递el属性 ---常用
+        const vm = new Vue({
+            data: {
+                msg: '你好哇',
+                addr: '你心里'
+            }
+        })
+        vm.$mount('#root')
+
+
+        // console.log(vm);
+        setTimeout(() => {
+            vm.msg = "Libra"
+        }, 1000)
+    </script>
+</body>
+
+</html>

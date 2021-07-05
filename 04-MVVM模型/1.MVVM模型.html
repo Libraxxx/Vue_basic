@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVVM模型</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>Hello，{{msg}}</h2>
+        <h2>地址是，{{addr}}</h2>
+    </div>
+    <script>
+        const vm = new Vue({
+                el: '#root',
+                data: {
+                    msg: '你好哇',
+                    addr: '你心里'
+                }
+            }),
+            // console.log(vm);
+            setTimeout(() => {
+                vm.msg = "Libra"
+            }, 1000)
+    </script>
+</body>
+
+</html>
