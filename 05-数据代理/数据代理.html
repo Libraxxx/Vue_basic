@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据代理</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>学校名字：{{name}}</h2>
+        <h2>学校地址：{{address}}</h2>
+        <h2>学科：{{subject}}</h2>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: 'cqupt',
+                address: 'chongqing',
+                subject: 'javascript'
+            }
+        })
+        console.log(vm._data.name);
+        console.log(vm.name);
+    </script>
+</body>
+
+</html>
