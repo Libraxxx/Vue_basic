@@ -34,6 +34,16 @@
     </style>
 </head>
 
+<!-- 
+  1.基本编码：
+    （1）在目标元素外包裹<transition name="xxx">
+    （2）编写：进入动画，离开动画的样式
+  2.类名规范
+      (1)进入动画样式：xxx-enter-active
+      (2)离开动画样式：xxx-leave-active
+
+ -->
+
 <body>
     <div id="root">
         <button @click="isShow=!isShow">切换</button>
