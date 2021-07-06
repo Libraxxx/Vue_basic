@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+    <title>基本列表</title>
+</head>
+
+<body>
+    <div id="root">
+        <!-- v-for遍历数组 -->
+        <h2>人员列表</h2>
+        <ul>
+            <li v-for="(p,index) in persons" :key="p.id">
+                {{p.name}}---{{p.age}}---{{p.sex}}---{{index}}
+            </li>
+        </ul>
+
+        <!-- v-for遍历对象 -->
+        <h2>汽车信息</h2>
+        <ul>
+            <li v-for="(value,key) in car" ::key="key">{{value}}</li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                persons: [{
+                    id: "001",
+                    name: "老刘",
+                    age: 188,
+                    sex: '男'
+                }, {
+                    id: "002",
+                    name: "老li",
+                    age: 18,
+                    sex: '男'
+                }, {
+                    id: "003",
+                    name: "老wang",
+                    age: 1566,
+                    sex: '男'
+                }, {
+                    id: "004",
+                    name: "老zhang",
+                    age: 5566,
+                    sex: '男'
+                }],
+                car: {
+                    name: '奔驰c36',
+                    price: "60wan",
+                    color: "白色"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

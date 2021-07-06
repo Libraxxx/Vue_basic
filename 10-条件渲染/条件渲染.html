@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<!-- 
+  条件渲染：
+    v-if：
+      适用于：切换频率很低的场景
+      特点：不展示的DOM节点直接被删除
+    
+    v-show：
+      适用于：切换频率很高的节点
+      特点：不展示的DOM节点没有被删除，仅仅只是使用样式被隐藏
+
+    注意：使用v-if时候，DOM节点可能无法获取到，而使用v-show一定可以获取到DOM节点
+
+ -->
+
+<body>
+    <div id="root">
+        <h2>今天天气{{isHot? '炎热':'凉爽'}}</h2>
+        <button @click='isHot=!isHot'>切换天气</button>
+
+
+        <!-- <div v-show="isHot">
+            <span>今天很热</span>
+        </div>
+
+        <div v-show="!isHot">
+            <span>今天很凉爽</span>
+        </div> -->
+
+
+        <div v-if="isHot">
+            <span>今天很热</span>
+        </div>
+
+        <div v-else>
+            <span>今天很凉爽</span>
+        </div>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                isHot: true
+            }
+        })
+    </script>
+</body>
+
+</html>

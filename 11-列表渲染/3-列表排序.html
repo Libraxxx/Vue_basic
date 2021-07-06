@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表排序</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- v-for遍历数组 -->
+        <h2>人员列表</h2>
+        <input type="text" placeholder="输入姓名" v-model="keywords">
+        <button @click="sortType=1">年龄升序↑</button>
+        <button @click="sortType=2">年龄降序↓</button>
+        <button @click="sortType=0">原顺序</button>
+        <ul>
+            <li v-for="(p,index) in fmtPersons" :key="p.id">
+                {{p.name}}---{{p.age}}---{{p.sex}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                keywords: "",
+                sortType: 0, //0原顺序，1升序，2降序
+                persons: [{
+                    id: "001",
+                    name: "马冬梅",
+                    age: 18,
+                    sex: '男'
+                }, {
+                    id: "002",
+                    name: "周杰伦",
+                    age: 66,
+                    sex: '男'
+                }, {
+                    id: "003",
+                    name: "周冬雨",
+                    age: 15,
+                    sex: '女'
+                }, {
+                    id: "004",
+                    name: "温兆伦",
+                    age: 55,
+                    sex: '男'
+                }],
+            },
+            methods: {
+
+            },
+            //使用computed过滤，不修改原数据
+            computed: {
+                fmtPersons() {
+                    const {
+                        persons,
+                        keywords,
+                        sortType
+                    } = this
+
+                    //根据关键词过滤
+                    let arr = persons.filter(p =>
+                        p.name.indexOf(keywords) !== -1
+                    )
+
+                    //排序
+                    if (sortType) {
+                        arr.sort((a, b) => {
+                            if (sortType === 1) {
+                                return a.age - b.age
+                            } else {
+                                return b.age - a.age
+                            }
+                        })
+                    }
+                    return arr
+                }
+            },
+
+            //在watch中修改原数据，会导致原数据的丢失
+            watch: {
+                // keywords(newValue, oldValue) {
+                //     // console.log(newValue);
+                //     const arr = this.persons.filter((p, index) => {
+                //         return p.name.indexOf(newValue) !== -1
+                //     })
+                //     console.log(arr);
+                // }
+            }
+        })
+    </script>
+</body>
+
+</html>

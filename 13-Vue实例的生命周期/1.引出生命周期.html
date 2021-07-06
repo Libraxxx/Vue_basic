@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2 :style="{opacity:a}">分手了怎么办？</h2>
+        <button @click="kill">杀死她</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                a: 0.5
+            },
+            methods: {
+                kill() {
+                    this.$destroy() //vm还在，只是vm不管理root容器中的数据了，移除所有状态的监听
+                    console.log(vm);
+                }
+            },
+
+            //vue实例vm挂载完毕
+            mounted() {
+                this.timer = setInterval(() => {
+                    console.log("定时器回调正在调用");
+                    this.a -= 0.01
+                    if (this.a <= 0) {
+                        this.a = 1
+                    }
+                }, 16)
+            },
+
+            //vm将要销毁
+            beforeDestroy() {
+                clearInterval(this.timer)
+            },
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+    <style>
+        .pic {
+            width: 500px;
+        }
+        
+        .qiuku-leave {
+            /* 离开的起点时的状态 */
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+        
+        .qiuku-leave-to {
+            /* 离开的终点时的状态 */
+            opacity: 0;
+            transform: scale(0.2) rotate(180deg);
+        }
+        
+        .qiuku-leave-active {
+            /* 离开中 */
+            transition: all 1s linear;
+        }
+        
+        .qiuku-enter {
+            opacity: 0;
+            transform: scale(0.2) rotate(180deg);
+        }
+        
+        .qiuku-enter-to {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+        
+        .qiuku-enter-active {
+            transition: all 2s linear;
+        }
+        /* 写在一起 */
+        
+        .qiuku-leave,
+        .qiuku-enter-to {
+            /* 离开的起点时的状态 */
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+        
+        .qiuku-enter,
+        .qiuku-leave-to {
+            opacity: 0;
+            transform: scale(0.2) rotate(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <button id="btn" @click="isShow=!isShow">切换</button>
+        <br>
+        <br>
+
+        <transition name="qiuku">
+            <img v-show="isShow" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0105b6b24c2bb5850a774615fa54049f77c4d181.png&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1628170321&t=bda7973199f972aa0d169da01fce396d"
+                class="pic">
+        </transition>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                isShow: true
+            }
+        })
+    </script>
+</body>
+
+</html>

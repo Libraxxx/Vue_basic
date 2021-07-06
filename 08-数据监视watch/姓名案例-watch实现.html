@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+</head>
+
+<!-- 
+  监视属性watch：
+    1.当监视的属性发生变化时，回调函数自动调用，进行相关操作
+    2.属性必须存在，才能进行监视
+    3.监视的两种写法：
+      （1）new Vue 时传入watch配置
+      （2）通过vm.$watch()监视
+    computed和watch之间的区别：
+      1.只要是computed能完成的功能，watch都可以完成
+      2.watch能完成的功能，computed不一定能完成，例如：watch可以进行异步操作
+    备注：
+      1.所有被Vue所调用（管理）的函数，都不要写成箭头函数---例如：watch中的函数，computed中的函数
+      2.所有不是被Vue所调用的函数，都要写成箭头函数---例如：定时器的回调，Ajax的回调等等
+      3.watch就是vue给我提供的一个监测数据改变的手段，至于数据发生变化后，要做什么，得看具体的业务逻辑
+        例如：
+          需要新的值、旧的值作比较，决定接下来干什么
+          不要值，只要数据改变了，就发请求等等
+
+ -->
+
+<body>
+    <div id="root">
+        姓：<input type="text" v-model="firstName"> 名：
+        <input type="text" v-model="lastName">
+
+        <span>全名：{{FullName}}</span>
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                firstName: "张",
+                lastName: "三",
+                FullName: ''
+            },
+            methods: {
+
+            },
+            computed: {
+
+
+            },
+            watch: {
+                //检测姓---精简写法
+                // firstName(newValue, oldValue) { //watch中的firstName什么时候调用？data中的firstName被改变的时候
+                //     // console.log("firstName被改变了", newValue, oldValue);
+                //     this.FullName = newValue + '-' + this.lastName
+                // },
+
+                //检测姓---完整写法
+                // firstName: {
+                //     immediate: true, //若immediate为true则handler在初始化时候，就会调用一次，以后就看firstName的改变了
+                //     handler(newValue, oldValue) {
+                //         this.FullName = newValue + '-' + this.lastName
+                //     }
+                // },
+
+
+                lastName(newValue, oldValue) {
+                    this.FullName = this.firstName + '-' + newValue
+                }
+            }
+        })
+
+        //watch监测firstName的另一种写法
+        vm.$watch('firstName', {
+            immediate: true, //若immediate为true则handler在初始化时候，就会调用一次，以后就看firstName的改变了
+            handler(newValue, oldValue) {
+                setTimeout(() => { //只能写箭头函数
+                    this.FullName = newValue + '-' + this.lastName
+                }, 1000)
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>和为：{{sum}}</h2>
+        <button @click="sum += 1" id="btn">点我+1</button>
+        <button @click="kill">销毁</button>
+    </div>
+
+    <script>
+        //修改Vue的全局配置
+        Vue.config.productionTip = false //关闭生产提示
+
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                sum: 0
+            },
+            methods: {
+                kill() {
+                    this.$destroy()
+                }
+            },
+
+            //Vue实例初始化前
+            beforeCreate() {
+                console.log("beforeCreate");
+                // console.log(this.sum); //undefined
+            },
+
+            //Vue实例初始化完毕
+            created() {
+                console.log("created");
+                console.log(this.sum);
+            },
+
+            //Vue实例更新真实DOM之前（挂载前）
+            beforeMount() {
+                console.log("beforeMount");
+                // const btn = document.getElementById('btn')
+                // btn.innerText = '哈哈'
+            },
+
+            //Vue实例更新完真实DOM了（挂载完毕）
+            mounted() {
+                console.log("mounted");
+                // const btn = document.getElementById('btn')
+                // btn.innerText = '哈哈'  //页面已经改变了
+            },
+
+            //Vue实例将要更新页面
+            beforeUpdate() {
+                console.log("beforeUpdate");
+                console.log(this.sum); //点击+1之后，控制台输出的是1，但是页面还是0，没有改变
+                // debugger
+            },
+
+            //Vue实例完成更新页面
+            updated() {
+                console.log("updated");
+                console.log(this.sum);
+            },
+
+            //Vue实例销毁前
+            beforeDestroy() {
+                console.log("beforeDestroy");
+                console.log(this.sum);
+            },
+
+            //Vue销毁完毕
+            destroyed() {
+                console.log("destroyed");
+            },
+        })
+    </script>
+</body>
+
+</html>
