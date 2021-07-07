@@ -59,6 +59,21 @@
     </style>
 </head>
 
+<!-- 
+  1.基本编码：
+    （1）在目标元素外包裹<transition name="xxx">
+    （2）编写样式
+        进入：
+          进入起始点：（xxx-leave）
+          进入过程中：（xxx-enter-active）
+          进入结束点 的样式：（xxx-enter-to）
+        离开：
+          离开起始点：（xxx-leave）
+          离开过程中：（xxx-leave-active）
+          离开结束点 的样式：（xxx-leave-to）
+ -->
+
+
 <body>
     <div id="root">
         <button id="btn" @click="isShow=!isShow">切换</button>
