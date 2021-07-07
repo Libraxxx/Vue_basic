@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非单文件组件</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <School></School>
+    </div>
+    <script>
+        const School = Vue.extend({
+            data() {
+                return {
+                    name: "ajdaj",
+                    addr: "456"
+                }
+            },
+            template: `
+            <div>
+              <h2>名字：{{name}}</h2>
+              <h2>地址：{{addr}}</h2>
+            </div>
+          `
+        })
+
+        //全局注册组件
+        // Vue.component('School', School)
+
+        new Vue({
+            el: '#root',
+            components: {
+                //局部注册组件
+                School
+            }
+        })
+    </script>
+</body>
+
+</html>

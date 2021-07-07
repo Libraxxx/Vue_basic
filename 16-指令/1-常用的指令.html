@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用的指令</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.7/vue.js"></script>
+</head>
+
+<!-- 
+  常用的内置指令：
+    v-text：更新元素的innerText
+    v-html：更新元素的innerHTML
+    v-if：条件渲染（动态控制节点是否存在）
+    v-else：条件渲染（动态控制节点是否存在）
+    v-show：条件渲染（动态控制display）
+    v-for：遍历数组/对象
+    v-bind:xxx ：强制绑定解析表达式，课简写为 :xxx
+    v-model：双向数据绑定
+    ref：为某一个元素注册一个唯一标识，vue对象通过$refs属性访问这个元素对象
+ -->
+
+
+<body>
+    <div id="root">
+        <a :href="url" v-text="title"></a>
+        <div v-html="htmlStr"></div>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                url: 'https://www.baidu.com',
+                title: '百度一下',
+                htmlStr: '<h4>欢迎来到</h4>'
+            }
+        })
+    </script>
+</body>
+
+</html>
