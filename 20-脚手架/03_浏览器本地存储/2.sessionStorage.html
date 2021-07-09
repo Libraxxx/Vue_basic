@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sessionStorage</title>
+</head>
+
+<!-- 只要浏览器关闭，sessionStorage就直接清空 -->
+
+<body>
+    <h1>sessionStorage</h1>
+    <button id="btn1">保存数据到sessionStorage</button>
+    <button id="btn2">读取sessionStorage数据</button>
+    <button id="btn3">删除sessionStorage数据</button>
+    <button id="btn4">清除sessionStorage数据</button>
+
+    <script>
+        const btn1 = document.querySelector('#btn1')
+        const btn2 = document.querySelector('#btn2')
+        const btn3 = document.querySelector('#btn3')
+        const btn4 = document.querySelector('#btn4')
+
+        const arr = [1, 3, 5, 7, 9]
+        const p = {
+            name: '老刘',
+            age: 56
+        }
+
+        btn1.onclick = () => {
+            sessionStorage.setItem('person', JSON.stringify(p))
+            sessionStorage.setItem('someData', JSON.stringify(arr))
+        }
+
+        btn2.onclick = () => {
+            const res = sessionStorage.getItem('person')
+            try {
+                //尝试解析，如果没问题就正常数据
+                console.log(JSON.parse(res));
+            } catch (error) {
+                //出现问题就输出问题，并清除
+                console.log(error.message);
+                sessionStorage.removeItem('person')
+            }
+        }
+
+        btn3.onclick = () => {
+            sessionStorage.removeItem('person')
+        }
+
+        btn4.onclick = () => {
+            sessionStorage.clear()
+        }
+    </script>
+</body>
+
+</html>
