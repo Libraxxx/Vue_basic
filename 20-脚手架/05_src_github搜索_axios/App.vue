@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="container">
-      <h2 class="title">欢迎使用GitHub用户搜索</h2>
       <Search></Search>
       <List></List>
     </div>
@@ -18,7 +17,4 @@ export default {
 </script>
 
 <style scoped>
-  .title{
-    text-align: center;
-  }
 </style>
